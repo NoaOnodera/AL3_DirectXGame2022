@@ -51,7 +51,7 @@ class GameScene {
 	uint32_t textureHandle_ = 0;
 
 	DebugText* debugText_ = nullptr;
-	WorldTransform worldTransform_;
+	WorldTransform worldTransform_[100];
 	ViewProjection viewProjection_;
 	/// <summary>
 	/// ゲームシーン用
