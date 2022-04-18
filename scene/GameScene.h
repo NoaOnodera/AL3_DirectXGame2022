@@ -46,8 +46,13 @@ class GameScene {
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
-	DebugText* debugText_ = nullptr;
+	Sprite* sprite_ = nullptr;
+	Model* model_ = nullptr;
+	uint32_t textureHandle_ = 0;
 
+	DebugText* debugText_ = nullptr;
+	WorldTransform worldTransform_;
+	ViewProjection viewProjection_;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
