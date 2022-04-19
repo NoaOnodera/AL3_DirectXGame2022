@@ -116,7 +116,7 @@ void GameScene::Update() {
 	}
 
 	viewProjection_.up = {cosf(viewAngle), sinf(viewAngle), 0.0f};
-	viewProjection_.UpdateMatrix();
+	viewProjection_.UpdateMatrix();*/
 
 	
 
@@ -124,15 +124,15 @@ void GameScene::Update() {
 
 	//FoV変更処理
 	//上キーで視野角が広がる
-	//if (input_->PushKey(DIK_UP)) {
-	//	viewProjection_.fovAngleY += 0.01f;
-	//	viewProjection_.fovAngleY = min(viewProjection_.fovAngleY, XM_PI);
-	//	//下キーでしあy角が狭まる
-	//} else if (input_->PushKey(DIK_DOWN)) {
-	//	viewProjection_.fovAngleY-= 0.01f;
-	//	viewProjection_.fovAngleY = max(viewProjection_.fovAngleY, 0.01f);
+	if (input_->PushKey(DIK_W)) {
+		viewProjection_.fovAngleY += 0.01f;
+		viewProjection_.fovAngleY = min(viewProjection_.fovAngleY, XM_PI);
+		//下キーでしあy角が狭まる
+	} else if (input_->PushKey(DIK_S)) {
+		viewProjection_.fovAngleY-= 0.01f;
+		viewProjection_.fovAngleY = max(viewProjection_.fovAngleY, 0.01f);
 
-	}*/
+	}
 
 	 debugText_->SetPos(50, 50);
 	debugText_->Printf("eye:(%f,%f,%f)", viewProjection_.eye.x, viewProjection_.eye.y, viewProjection_.eye.z);
