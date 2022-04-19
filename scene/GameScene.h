@@ -46,9 +46,9 @@ class GameScene {
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
-	Sprite* sprite_ = nullptr;
+	Sprite* sprite_ = nullptr;//スプライト
 	Model* model_ = nullptr;
-	uint32_t textureHandle_ = 0;
+	uint32_t textureHandle_ = 0;//テクスチャハンドル
 	float viewAngle = 0.0f;
 	DebugText* debugText_ = nullptr;
 	WorldTransform worldTransform_[100];
