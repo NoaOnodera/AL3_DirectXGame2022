@@ -27,7 +27,7 @@ void GameScene::Initialize() {
 
 	for (size_t i= 0; i < _countof(worldTransform_); i++) {
 
-		worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
+		worldTransform_[i].scale_ = {1.1f, 1.0f, 1.0f};
 		worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
 		worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
 		worldTransform_[i].Initialize(); //ワールドトランスフォームの初期化
