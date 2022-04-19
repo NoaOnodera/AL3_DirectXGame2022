@@ -30,14 +30,9 @@ void GameScene::Initialize() {
 		worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
 		worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
 		worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
-		
-		worldTransform_[i].Initialize();
-		                 ////ワールドトランスフォームの初期化
-		
+		worldTransform_[i].Initialize(); //ワールドトランスフォームの初期化
+		viewProjection_.Initialize(); //ビュープロジェクションの初期化
 	}
-	viewProjection_.up = {cosf(XM_PI / 4.0f), sinf(XM_PI/4.0f),0.0f};
-	viewProjection_.Initialize(); //ビュープロジェクションの初期化
-
 }
 
 void GameScene::Update() { 
@@ -63,60 +58,6 @@ void GameScene::Update() {
 
 	debugText_->Print(scaleDebug, 50, 90, 1.0f);*/
 
-	XMFLOAT3 move{0, 0, 0};
-
-	const float kEyeSpeed = 0.2f;
-
-	if (input_->PushKey(DIK_W)) {
-		move = {0, 0, kEyeSpeed};
-	} else if (input_->PushKey(DIK_S)) {
-		move = {0, 0, -kEyeSpeed};
-	}
-
-	viewProjection_.eye.x += move.x;
-	viewProjection_.eye.y += move.y;
-	viewProjection_.eye.z += move.z;
-
-	viewProjection_.UpdateMatrix();
-	debugText_->SetPos(50, 50);
-	debugText_->Printf(
-	  "eye:(%f,%f,%f)", viewProjection_.eye.x, viewProjection_.eye.y, viewProjection_.eye.z);
-
-
-	XMFLOAT3 move {0,0,0};
-
-	const float kTargetSpeed = 0.2f;
-
-	if (input_->PushKey(DIK_LEFT)) {
-		move = {0, 0, kTargetSpeed};
-	} else if (input_->PushKey(DIK_RIGHT)) {
-		move = {0, 0, -kTargetSpeed};
-	}
-
-	viewProjection_.target.x += move.x;
-	viewProjection_.target.y += move.y;
-	viewProjection_.target.z += move.z;
-
-	viewProjection_.UpdateMatrix();
-	
-	
-
-	debugText_->SetPos(50, 70);
-	debugText_->Printf(
-	  "target:(%f,%f,%f)", viewProjection_.target.x, viewProjection_.target.y,viewProjection_.target.z);
-	const float kUpRotSpeed = 0.05f;
-
-	if (input_->PushKey(DIK_SPACE)) {
-		viewAngle += kUpRotSpeed;
-
-		viewAngle = fmodf(viewAngle, XM_2PI);
-	}
-
-	viewProjection_.up = {cosf(viewAngle), sinf(viewAngle), 0.0f};
-	viewProjection_.UpdateMatrix();
-
-	debugText_->SetPos(50, 90);
-	debugText_->Printf("up:(% f, % f,% f) ", viewProjection_.up.x, viewProjection_.up.y, viewProjection_.up.z);
 }
 
 void GameScene::Draw() {

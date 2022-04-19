@@ -49,7 +49,7 @@ class GameScene {
 	Sprite* sprite_ = nullptr;
 	Model* model_ = nullptr;
 	uint32_t textureHandle_ = 0;
-	float viewAngle = 0.0f;
+
 	DebugText* debugText_ = nullptr;
 	WorldTransform worldTransform_[100];
 	ViewProjection viewProjection_;
