@@ -53,6 +53,19 @@ class GameScene {
 	DebugText* debugText_ = nullptr;
 	WorldTransform worldTransform_[100];
 	ViewProjection viewProjection_;
+
+  public:
+	  enum PartId {
+		  Root,
+		  Spine,
+		  Chest,
+		  Head,
+		  ArmL,
+		  ArmR,
+		  Hip,
+		  LegL,
+		  LegR,
+	};
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
