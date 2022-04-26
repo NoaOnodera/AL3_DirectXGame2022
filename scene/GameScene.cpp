@@ -2,11 +2,12 @@
 #include "TextureManager.h"
 #include <cassert>
 
+
 using namespace DirectX;
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() { delete model_; }
 
 void GameScene::Initialize() {
 
@@ -14,6 +15,42 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
+	textureHandle_ = TextureManager::Load("mario.jpg");
+	model_=Model::Create();
+
+
+
+	
+
+
+	for (size_t i = 0; i < _countof(worldTransform_); i++) {
+
+		 //x,y,z方向のスケーリングを設定
+		worldTransform_[i].scale_ = {5.0f, 5.0f, 5.0f};
+		 //x,y,z軸周りの回転角を設定
+		//worldTransform_[i].rotation_ = {XM_PI / 4.0f, XM_PI / 4.0f, 0.0f};
+		//x,y,z軸周りの平行移動を設定
+		//worldTransform_[i].translation_ = {-30.0f, -17.0f, 0.0f};
+		
+		if (9 < i) 
+		{
+			worldTransform_[i].translation_ = {-36.0f, 18.0f, 0.0f};
+			worldTransform_[i].translation_.x += (20 - i) * 10;
+		} else 
+		{
+			worldTransform_[i].translation_ = {-36.0f, -18.0f, 0.0f};
+			worldTransform_[i].translation_.x += (9 - i) * 10;
+		}
+		
+		
+		
+		//ワールドトランスフォーム
+		worldTransform_[i].Initialize();
+	}
+   //ビュープロジェクション
+   viewProjection_.Initialize();
+
+   
 }
 
 void GameScene::Update() {}
@@ -29,6 +66,7 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに背景スプライトの描画処理を追加できる
+
 	/// </summary>
 
 	// スプライト描画後処理
@@ -43,6 +81,9 @@ void GameScene::Draw() {
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
+	for (size_t i = 0; i <_countof(worldTransform_); i++){
+		model_->Draw(worldTransform_[i], viewProjection_, textureHandle_);
+    }
 	/// </summary>
 
 	// 3Dオブジェクト描画後処理
